@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Map;
 
@@ -59,5 +60,10 @@ public class AccountController {
     public ResponseEntity<String> deleteAccount(@PathVariable Long id){
         accountService.deleteAccount(id);
         return ResponseEntity.ok("Account is deleted successfully!");
+    }
+
+    @GetMapping("/currentLoggedInUser")
+    public String getLoggedInUser(Principal principal){
+        return principal.getName();
     }
 }
